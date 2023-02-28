@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block page_title %}
+Form
+{% endblock %}
+{% block content %}
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+            <h4 class="page-title" style="margin: 0 auto; float: none; width: 41%;">Incripciones</h4>
+            <div class="ml-auto text-right">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'gestion:dashboard' %}">Inicio</a></li>
+
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="m-auto col-sm-12 col-md-6 col-lg-8 col-xl-8">
+    <div class="table-responsive py-2">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Cedula</th>
+                    <th>Nombre</th>
+                    <th>email</th>
+                    <th>username</th>
+                    <th colspan="2">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in usuario %}
+                <tr>
+                    <td>{{b.profile.cedula}}</td>
+                    <td>{{b.first_name}}</td>
+                    <td>{{b.email}}</td>
+                    <td>{{b.username}}</td>
+                    <td><a href="{% url 'gestion:edicion' id=b.id %}" class="btn btn-info">Editar</a></td>
+                    <td><a href="{% url 'gestion:eliminar' id=b.id %}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}

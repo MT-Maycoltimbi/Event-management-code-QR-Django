@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+            <h4 class="page-title" style="margin: 0 auto; float: none; width: 41%;">Dashboard Estadistico</h4>
+            <div class="ml-auto text-right">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'gestion:dashboard' %}">Inicio</a></li>
+
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<body>
+    
+    <div class="container">        
+            <div class="row">
+                <div class="col-md-6">
+                    <canvas id="grafico" style="margin-top: 100px; margin-left: 50px;"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="m-auto text-center text-5xl">Numero de usuarios registrados: {{ data.n_usuarios }}</div>
+        <p></p>
+        <div class="m-auto text-center">Numero de Mujeres registradas: {{ data.women }}</div>
+        <p></p>
+        <div class="m-auto text-center">Numero de Hombres registrados: {{ data.men }}</div>
+        <p></p>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+        <script>
+            var x = x;
+            var y = y;
+            var ctx = document.getElementById('grafico').getContext('2d');
+            var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: x,
+                datasets: [{
+                    label: 'Valor',
+                    data: y,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        </script>
+</body>
+{% endblock %}
+  
+
+
+
+   
